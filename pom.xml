@@ -14,14 +14,6 @@
             <artifactId>jsoup</artifactId>
             <version>1.11.2</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/chrriis/dj-nativeswing-swt -->
-        <dependency>
-            <groupId>chrriis</groupId>
-            <artifactId>dj-nativeswing-swt</artifactId>
-        </dependency>
-
-
     </dependencies>
 
 </project>
