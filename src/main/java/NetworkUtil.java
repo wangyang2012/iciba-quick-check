@@ -9,6 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.URL;
+import java.util.Iterator;
 
 public class NetworkUtil {
     private static NetworkUtil instance = new NetworkUtil();
@@ -49,7 +50,7 @@ public class NetworkUtil {
     // HTTP GET request
     private static String sendGet(String word) throws Exception {
 
-        String url = "http://www.iciba.com/collision";
+        String url = "http://www.iciba.com/"+word;
 
         Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("firewall.ina.fr", 81));
 
@@ -74,9 +75,25 @@ public class NetworkUtil {
     // Retrieve content
     private String retrieveContent(String html) {
 
+        StringBuilder result = new StringBuilder("<html><body>");
         Document doc = Jsoup.parse(html);
-        Element usefulContent = doc.select(".container-left").first();
-        System.out.println(usefulContent);
-        return usefulContent.toString();
+
+        // Keyword
+        Element keyword = doc.select(".keyword").first();
+        result.append(keyword.toString());
+
+        // Pronounciation
+        Element pronounciation = doc.select(".base-speak").first();
+        result.append(pronounciation.toString());
+
+        // Signification
+        Elements significations = doc.select("ul li.clearfix");
+        Iterator iterator = significations.iterator();
+        while(iterator.hasNext()) {
+            Element element = (Element)iterator.next();
+            result.append(element.toString());
+        }
+
+        return result.toString();
     }
 }

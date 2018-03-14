@@ -11,16 +11,7 @@ public class MyWindow extends JFrame {
     private JButton button = new JButton();
 
 
-    String initialText = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n" +
-            "<html>\n" +
-            "  <head>\n" +
-            "    <title></title>\n" +
-            "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n" +
-            "  </head>\n" +
-            "  <body>\n" +
-            "    TODO write content你是我的爱人！\n" +
-            "  </body>\n" +
-            "</html>";
+    String initialText = "";
 
     private JEditorPane  result = new JEditorPane("html/text", initialText);
 
@@ -41,7 +32,6 @@ public class MyWindow extends JFrame {
         word.setPreferredSize(new Dimension(400, 100));
         button.setText("Search");
         button.setPreferredSize(new Dimension(100, 100));
-        result.setEnabled(false);
         result.setPreferredSize(new Dimension(500, 400));
 
         JScrollPane scrollPane = new JScrollPane(result);
@@ -64,6 +54,7 @@ public class MyWindow extends JFrame {
 
     public void setResult(String resultContent) {
         result.setContentType("text/html");
+//        result.setText("<html><body><h1>Hello</h1></body></html>");
         result.setText(resultContent);
     }
 }
